@@ -18,12 +18,9 @@ def read_msg(offset):
     print(data)
 
     for result in data["result"]:
-        if "text" in result["message"]:
-            message_text = result["message"]["text"]
-            sendMessage(message_text)
-        else:
-            print("Message does not contain text:", result["message"])
-        
+        message_text = result["message"]["text"]
+        sendMessage(message_text)
+    
     if data["result"]:
         return data["result"][-1]["update_id"] + 1
 

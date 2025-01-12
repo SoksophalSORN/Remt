@@ -55,7 +55,7 @@ def sendMessage2():
     # time.sleep(10)
     my_file = open("m.jpg", "rb")
     parameters = {
-        "chat_id" : "-1002439463012",
+        "chat_id" : "-4673405840",
         "caption" : "Jorb kok" 
     }
     

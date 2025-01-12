@@ -10,54 +10,23 @@ def getMessage(offset):
     data = resp.json()
     
     for result in data["result"]:
-        if "message" in result and "text" in result["message"] and "Different Generation" in result["message"]["text"]:
-            sendMessage()
-        if "message" in result and "text" in result["message"] and "Ah K'theay" in result["message"]["text"]:
-            sendMessage1()
-        if "message" in result and "text" in result["message"] and "Ah Pengly" in result["message"]["text"]:
-            sendMessage2()
-        if "message" in result and "text" in result["message"] and "Ah Kok" in result["message"]["text"]:
-            sendMessage3()
+        if "text" in result["message"]:
+            message_text = result["message"]["text"]
+            sendMessage(message_text)
+        else:
+            print("Message does not contain text:", result["message"])
     
     if data["result"]:
         return data["result"][-1]["update_id"] + 1
 
-def sendMessage():
+def sendMessage(message):
     # time.sleep(10)
     parameters = {
         "chat_id" : "-1002439463012",
-        "text" : "Thoak" 
+        "text" : message
     }
     
     resp = requests.get(base_url + "/sendMessage", data=parameters)
-    print(resp.text)
-
-def sendMessage1():
-    # time.sleep(10)
-    parameters = {
-        "chat_id" : "-1002439463012",
-        "text" : "Kdmv ah k'theay" 
-    }
-    
-    resp = requests.get(base_url + "/sendMessage", data=parameters)
-    print(resp.text)
-def sendMessage2():
-    # time.sleep(10)
-    parameters = {
-        "chat_id" : "-1002439463012",
-        "text" : "Jorb Kok" 
-    }
-    resp = requests.get(base_url + "/sendMessage", data=parameters)
-    print(resp.text)
-    
-def sendMessage3():
-    # time.sleep(10)
-    parameters = {
-        "chat_id" : "-1002439463012",
-        "text" : "Ah Pengly" 
-    }
-    
-    resp = requests.get(base_url + "/sendPhoto", data=parameters)
     print(resp.text)
 
 
